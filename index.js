@@ -31,7 +31,6 @@ const ourMenu = menuArray.map(function(item){
                 })
 
 
-
 part1.innerHTML += ourMenu.join('')
 
 const itemDisplay = menuArray.map(function(element){
@@ -106,7 +105,7 @@ function removeBtns(itemId, elId, totPriceDisplay, totalPriceId, orderArrCount){
     totPriceDisplay = document.getElementById(totalPriceId)
 
     itemId.style.display = 'none'
-    /* orders.textContent -= itemId */
+    /* orders.innerHTML = itemDisplay[0]*/
     totalPrice -= arrTotItem(orderArrCount)
 
     orderArrCount.length = 0 // empty the array
@@ -152,47 +151,19 @@ btn3.addEventListener('click', function(){
     }
 })
 
-// Check remove1 (already implemented, but shown for context)
-if (remove1) {
-    remove1.addEventListener('click', function() {
-        removeBtns(order1, 'order1', orderTotal, 'order-total', pizzaOrder);
-    });
-}
 
-// Add checks for remove2 and remove3 to prevent the TypeError
-if (remove2) {
-    remove2.addEventListener('click', function() {
-        removeBtns(order2, 'order2', orderTotal, 'order-tota2', humOrder);
-    });
-}
-
-if (remove3) {
-    remove3.addEventListener('click', function() {
-        removeBtns(order3, 'order3', orderTotal, 'order-tota3', beerOrder);
-    });
-}
-
-
-/* if (!remove1){
-    console.log('That item has not been created')
-} else {
-    remove1.addEventListener('click', function(){
-        removeBtns(order1, 'order1', orderTotal, 'order-total', pizzaOrder)
-
-    })
-
-}
-
-
-remove2.addEventListener('click', function(){
-    removeBtns(order2, 'order2', orderTotal, 'order-tota2', humOrder)
-
+remove1.addEventListener('click', function() {
+    order1.textContent = 'I need to eat!'
+    /* removeBtns(order1, 'order1', orderTotal, 'order-total', pizzaOrder) */
 })
 
-remove3.addEventListener('click', function(){
-    removeBtns(order3, 'order3', orderTotal, 'order-tota3', beerOrder)
+remove2.addEventListener('click', function() {
+    removeBtns(order2, 'order2', orderTotal, 'order-tota2', humOrder)
+})
 
-}) */
+remove3.addEventListener('click', function() {
+    removeBtns(order3, 'order3', orderTotal, 'order-tota3', beerOrder)
+})
 
 
 /*
