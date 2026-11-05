@@ -50,10 +50,6 @@ const btn1 = document.getElementById('btn-1')
 const btn2 = document.getElementById('btn-2')
 const btn3 = document.getElementById('btn-3')
 
-const remove1 = document.getElementById('remove1')
-const remove2 = document.getElementById('remove2')
-const remove3 = document.getElementById('remove3')
-
 const totPrice1 = document.getElementById('item-tot-price1')
 const totPrice2 = document.getElementById('item-tot-price2')
 const totPrice3 = document.getElementById('item-tot-price3')
@@ -74,14 +70,16 @@ function addBtnsFirst(menuArrayIndex,
                 orderArrCount, 
                 totPriceDisplay)
     {
-        emptyCart.textContent = ''
+    /* emptyCart.textContent = '' */
+    if (preCheckout.style.display == 'none') {
         preCheckout.style.display = 'block'
-
         orderArrCount.push(menuArray[menuArrayIndex].price)
         totalPrice += orderArrCount[0]
         
         orders.innerHTML += itemDisplay[menuArrayIndex]
         totPriceDisplay.textContent = `$${totalPrice}`
+    }
+        
 }
 
 function addBtnsSecond(menuArrayIndex, 
@@ -105,21 +103,20 @@ function removeBtns(itemId, elId, totPriceDisplay, totalPriceId, orderArrCount){
     totPriceDisplay = document.getElementById(totalPriceId)
 
     itemId.style.display = 'none'
-    /* orders.innerHTML = itemDisplay[0]*/
     totalPrice -= arrTotItem(orderArrCount)
 
     orderArrCount.length = 0 // empty the array
     totPriceDisplay.textContent = `$${totalPrice}`
-    if (totalPrice === 0){
+    /* if (totalPrice === 0){
         preCheckout.style.display = 'none'
         emptyCart.innerHTML = `<p>You just emptied your cart!</p>`
-    }
+    } */
 }
 
 function arrTotItem(arr){
     return arr.reduce(function(x, y){
             return x + y
-    })
+    }, 0)
 }
 
 
@@ -152,17 +149,38 @@ btn3.addEventListener('click', function(){
 })
 
 
-remove1.addEventListener('click', function() {
-    order1.textContent = 'I need to eat!'
-    /* removeBtns(order1, 'order1', orderTotal, 'order-total', pizzaOrder) */
-})
 
-remove2.addEventListener('click', function() {
-    removeBtns(order2, 'order2', orderTotal, 'order-tota2', humOrder)
-})
+orders.addEventListener('click', function(e) {
+    
+    if (e.target.id === 'remove1'){
+        removeBtns(order1, 
+                'order1', 
+                orderTotal, 
+                'order-total', 
+                pizzaOrder) 
+        
+    }
+    else if (e.target.id === 'remove2'){
+        removeBtns(order2, 
+                'order2', 
+                orderTotal, 
+                'order-total', 
+                humOrder) 
+        
+    } 
+    else if (e.target.id === 'remove3'){
+        removeBtns(order3, 
+                'order3', 
+                orderTotal, 
+                'order-total', 
+                beerOrder) 
+        
+    }
+    else {
+        console.warn("Element not found in the DOM.")
 
-remove3.addEventListener('click', function() {
-    removeBtns(order3, 'order3', orderTotal, 'order-tota3', beerOrder)
+    }
+
 })
 
 
