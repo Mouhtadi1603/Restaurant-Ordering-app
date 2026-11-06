@@ -230,7 +230,11 @@ h4{
     font-size: 25px;
 }
 
-#complete{
+.pay-tittle, #complete, input{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#complete, #submit{
     margin-left: 50px;
     width: 508px;
     height: 60px;
@@ -238,9 +242,45 @@ h4{
     border-radius: 3px;
     background-color: #16DB99;
     color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 700;
     font-size: 16px;
+}
+
+.pay-tittle{
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin: 25px 0px 30px 0px;
+}
+
+form{
+    position: fixed;
+    top: 0px;
+    margin: 360px auto 0px auto;
+    width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 10px 10px 2000px 0px #706f6f;
+    z-index: 100;
+}
+
+input {
+    width: 85%;
+    font-size: 18px;
+    color: #757575;
+    padding: 13px;
+    border: 2px solid #b3b3b3;
+    border-radius: 4px;
+    margin: 10px 50px;
+}
+
+#submit{
+    margin: 33px auto 30px auto;
+    width: 92%;
 }
 
 

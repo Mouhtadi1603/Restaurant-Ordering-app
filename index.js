@@ -5,7 +5,6 @@ const part1 = document.getElementById("part-1")
 const preCheckout = document.getElementById('pre-checkout')
 const orders = document.getElementById('orders')
 const orderTotal = document.getElementById('order-total')
-const total = document.getElementById('total')
 const emptyCart = document.getElementById('empty-cart')
 
 const ourMenu = menuArray.map(function(item){
@@ -22,7 +21,7 @@ const ourMenu = menuArray.map(function(item){
                                         <p class='item-price'>$${price}</p>
                                     </div>
                                 </div>
-                                <button id = 'btn-${id + 1}'><i class="fa-solid fa-plus"></i></button>
+                                <button><i class="fa-solid fa-plus" id = 'btn-${id + 1}'></i></button>
                             </div>
                             <div class='separator'></div>
                         </section>
@@ -45,10 +44,6 @@ const itemDisplay = menuArray.map(function(element){
             </div>
             `
 })
-
-const btn1 = document.getElementById('btn-1')
-const btn2 = document.getElementById('btn-2')
-const btn3 = document.getElementById('btn-3')
 
 const totPrice1 = document.getElementById('item-tot-price1')
 const totPrice2 = document.getElementById('item-tot-price2')
@@ -122,36 +117,41 @@ function arrTotItem(arr){
 
 /* **************** EXECUTIONS ************************ */
 
-btn1.addEventListener('click', function(){
-    addBtns(0, 
+part1.addEventListener('click', function(element){
+
+    if (element.target.id === 'btn-1'){
+
+        addBtns(0, 
             pizzaOrder, 
             totPrice1, 
             'item-tot-price1', 
             orderTotal,
-            'order-total')  
-})
+            'order-total') 
 
-btn2.addEventListener('click', function(){
-    addBtns(1, 
+    } 
+    else if (element.target.id === 'btn-2'){
+
+        addBtns(1, 
             humOrder, 
             totPrice2, 
             'item-tot-price2', 
             orderTotal,
             'order-total')
-    }
-)
 
-btn3.addEventListener('click', function(){{
-    addBtns(2, 
+    } 
+    else if(element.target.id === 'btn-3'){
+
+        addBtns(2, 
             beerOrder, 
             totPrice3, 
             'item-tot-price3', 
             orderTotal, 
             'order-total')
+
     }
-})
 
-
+    }
+)
 
 orders.addEventListener('click', function(e) {
     

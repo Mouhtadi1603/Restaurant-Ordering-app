@@ -40,11 +40,28 @@
             <button id="complete">Complete order</button>
         </div>
         <div id = 'empty-cart'></div>
-
-
-        
-        
+ 
     </div>
+
+    <form for = 'submit'>
+        <h4 class="pay-tittle">Enter card details</h4>
+        <input type = 'text' 
+                id = 'name' 
+                name = 'name' 
+                placeholder = 'Enter your name'/>
+
+        <input type = 'number' 
+                id = 'card-num' 
+                name = 'card-num' 
+                placeholder = 'Enter card number'/>
+
+        <input type = 'number' 
+                id = 'cvv' 
+                name = 'cvv' 
+                placeholder = 'Enter CVV'/>
+
+        <button type = 'submit' id = 'submit'>Pay</button>
+    </form>
 
     
     <script src="index.js" type="module" defer></script>
