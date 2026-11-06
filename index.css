@@ -211,6 +211,25 @@ h4{
     margin-top: 5px;
 }
 
+#empty-cart{
+    display: none;
+    position: relative;
+    text-align: center;
+    margin: 80px auto 0px auto;
+    font-weight: 400;
+    color: #065746;
+    background-color: #ecfdf5;
+    width: 504px;
+    height: 90px;
+}
+
+#empty-cart p {
+    position: absolute;
+    top: 5px;
+    left: 140px;
+    font-size: 25px;
+}
+
 #complete{
     margin-left: 50px;
     width: 508px;

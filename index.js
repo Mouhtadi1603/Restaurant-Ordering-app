@@ -66,51 +66,50 @@ let totalPrice = 0
 
 /* ************************ All the functions ************************ */
 
-function addBtnsFirst(menuArrayIndex, 
+function addBtns(
+                menuArrayIndex, 
                 orderArrCount, 
-                totPriceDisplay)
+                orderPriceDisplay, priceId, 
+                totPriceDisplay, totalPriceId)
     {
-    /* emptyCart.textContent = '' */
-    if (preCheckout.style.display == 'none') {
+    if (orderArrCount.length === 0) {
+
+        emptyCart.style.display = 'none'
         preCheckout.style.display = 'block'
         orderArrCount.push(menuArray[menuArrayIndex].price)
         totalPrice += orderArrCount[0]
-        
+
         orders.innerHTML += itemDisplay[menuArrayIndex]
         totPriceDisplay.textContent = `$${totalPrice}`
+
+    } else {
+
+        orderPriceDisplay = document.getElementById(priceId) 
+        totPriceDisplay = document.getElementById(totalPriceId)
+
+        orderArrCount.push(menuArray[menuArrayIndex].price)  
+        totalPrice += menuArray[menuArrayIndex].price
+
+        orderPriceDisplay.textContent = `$${arrTotItem(orderArrCount)}`
+        totPriceDisplay.textContent = `$${totalPrice}`
+
     }
-        
-}
-
-function addBtnsSecond(menuArrayIndex, 
-                orderArrCount, 
-                orderPriceDisplay, priceId, 
-                totPriceDisplay, totalPriceId){
-    
-    orderPriceDisplay = document.getElementById(priceId) 
-    totPriceDisplay = document.getElementById(totalPriceId)
-
-    orderArrCount.push(menuArray[menuArrayIndex].price)  
-    totalPrice += menuArray[menuArrayIndex].price
-
-    orderPriceDisplay.textContent = `$${arrTotItem(orderArrCount)}`
-    totPriceDisplay.textContent = `$${totalPrice}`
-
 }
 
 function removeBtns(itemId, elId, totPriceDisplay, totalPriceId, orderArrCount){
     itemId = document.getElementById(elId)
     totPriceDisplay = document.getElementById(totalPriceId)
 
-    itemId.style.display = 'none'
+    itemId.remove()
     totalPrice -= arrTotItem(orderArrCount)
 
     orderArrCount.length = 0 // empty the array
     totPriceDisplay.textContent = `$${totalPrice}`
-    /* if (totalPrice === 0){
+    if (totalPrice === 0){
         preCheckout.style.display = 'none'
+        emptyCart.style.display = 'block'
         emptyCart.innerHTML = `<p>You just emptied your cart!</p>`
-    } */
+    }
 }
 
 function arrTotItem(arr){
@@ -124,27 +123,31 @@ function arrTotItem(arr){
 /* **************** EXECUTIONS ************************ */
 
 btn1.addEventListener('click', function(){
-    if (pizzaOrder.length === 0){
-        addBtnsFirst(0, pizzaOrder, orderTotal)
-    } else {
-        addBtnsSecond(0, pizzaOrder, totPrice1, 'item-tot-price1',  orderTotal, 'order-total')
-    }
-    
+    addBtns(0, 
+            pizzaOrder, 
+            totPrice1, 
+            'item-tot-price1', 
+            orderTotal,
+            'order-total')  
 })
 
 btn2.addEventListener('click', function(){
-    if (humOrder.length === 0){
-        addBtnsFirst(1, humOrder, orderTotal)
-    } else {
-        addBtnsSecond(1, humOrder, totPrice2, 'item-tot-price2', orderTotal,'order-total')
+    addBtns(1, 
+            humOrder, 
+            totPrice2, 
+            'item-tot-price2', 
+            orderTotal,
+            'order-total')
     }
-})
+)
 
-btn3.addEventListener('click', function(){
-    if (beerOrder.length === 0){
-        addBtnsFirst(2, beerOrder, orderTotal)
-    } else {
-        addBtnsSecond(2, beerOrder, totPrice3, 'item-tot-price3', orderTotal, 'order-total')
+btn3.addEventListener('click', function(){{
+    addBtns(2, 
+            beerOrder, 
+            totPrice3, 
+            'item-tot-price3', 
+            orderTotal, 
+            'order-total')
     }
 })
 
