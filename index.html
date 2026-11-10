@@ -48,17 +48,25 @@
         <input type = 'text' 
                 id = 'name' 
                 name = 'name' 
-                placeholder = 'Enter your name'/>
+                placeholder = 'Enter your name'
+                minlength="2"
+                maxlength="50"
+                pattern="[a-zA-Z0-9]+"/>
 
-        <input type = 'number' 
+        <input type = 'text' 
                 id = 'card-num' 
                 name = 'card-num' 
-                placeholder = 'Enter card number'/>
+                placeholder = 'Enter card number'
+                minlength="16"
+                maxlength="19"
+                pattern="[0-9]+"/>
 
-        <input type = 'number' 
+        <input type = 'text' 
                 id = 'cvv' 
                 name = 'cvv' 
-                placeholder = 'Enter CVV'/>
+                placeholder = 'Enter CVV'
+                length="3"
+                pattern="[0-9]"/>
 
         <button type = 'submit' id = 'submit'>Pay</button>
     </form>
