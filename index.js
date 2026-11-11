@@ -211,7 +211,6 @@ preCheckout.addEventListener('click', function(e) {
 })
 
 form.addEventListener('click', function(e){
-
     e.preventDefault()
 
     if (e.target.id === 'submit'){
@@ -219,9 +218,6 @@ form.addEventListener('click', function(e){
         cardNum.value, 
         userCvv.value)
 
-        userName.value = ''
-        cardNum.value = ''
-        userCvv.value = ''
         form.style.display = 'none'
 
         orders.textContent = ''
@@ -233,10 +229,18 @@ form.addEventListener('click', function(e){
         preCheckout.style.display = 'none'
 
         thanksMsg.style.display = 'block'
-        thanksMsg.innerHTML = `<p>Thanks, ${userName.value}! Your order is on its way!</p>`
+        thanksMsg.innerHTML = `
+                            <p>
+                                Thanks, ${userName.value}! Your order is on its way!
+                            </p>
+                            `
+
+        userName.value = ''
+        cardNum.value = ''
+        userCvv.value = ''
 
     }
 
-    
-
 })
+
+    
