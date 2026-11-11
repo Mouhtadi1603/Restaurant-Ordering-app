@@ -6,6 +6,12 @@ const preCheckout = document.getElementById('pre-checkout')
 const orders = document.getElementById('orders')
 const orderTotal = document.getElementById('order-total')
 const emptyCart = document.getElementById('empty-cart')
+const thanksMsg = document.getElementById('thanks-msg')
+
+const form = document.querySelector('form')
+const userName = document.getElementById('name')
+const cardNum = document.getElementById('card-num')
+const userCvv = document.getElementById('cvv')
 
 const ourMenu = menuArray.map(function(item){
                     const {name, ingredients, id, price, emoji} = item
@@ -57,6 +63,7 @@ let pizzaOrder = []
 let humOrder = []
 let beerOrder = []
 let totalPrice = 0
+const cardInfo = []
 
 
 /* ************************ All the functions ************************ */
@@ -70,6 +77,7 @@ function addBtns(
     if (orderArrCount.length === 0) {
 
         emptyCart.style.display = 'none'
+        thanksMsg.style.display = 'none'
         preCheckout.style.display = 'block'
         orderArrCount.push(menuArray[menuArrayIndex].price)
         totalPrice += orderArrCount[0]
@@ -91,7 +99,12 @@ function addBtns(
     }
 }
 
-function removeBtns(itemId, elId, totPriceDisplay, totalPriceId, orderArrCount){
+function removeBtns(itemId, 
+                    elId, 
+                    totPriceDisplay, 
+                    totalPriceId, 
+                    orderArrCount){
+
     itemId = document.getElementById(elId)
     totPriceDisplay = document.getElementById(totalPriceId)
 
@@ -111,6 +124,16 @@ function arrTotItem(arr){
     return arr.reduce(function(x, y){
             return x + y
     }, 0)
+}
+
+
+function users(userName, userCardNum, userCvv){
+    let name = userName
+    let cardNum = userCardNum
+    let cvv = userCvv
+    
+    let userInfo = {name, cardNum, cvv}
+    cardInfo.push(userInfo)
 }
 
 
@@ -153,7 +176,7 @@ part1.addEventListener('click', function(element){
     }
 )
 
-orders.addEventListener('click', function(e) {
+preCheckout.addEventListener('click', function(e) {
     
     if (e.target.id === 'remove1'){
         removeBtns(order1, 
@@ -176,27 +199,44 @@ orders.addEventListener('click', function(e) {
                 'order3', 
                 orderTotal, 
                 'order-total', 
-                beerOrder) 
-        
+                beerOrder)   
+    } 
+    else if(e.target.id === 'complete'){ // Displays the payment form
+        form.style.display = 'flex'
     }
     else {
         console.warn("Element not found in the DOM.")
-
     }
 
 })
 
+form.addEventListener('click', function(e){
 
-/*
+    e.preventDefault()
 
-`
-<form for = 'submit'>
-    <h4>Enter card details</h4>
-    <input type = 'text' id = 'name' name = 'name' placeholder = 'Enter your name'/>
-    <input type = 'number' id = 'card-num' name = 'card-num' placeholder = 'Enter card number'/>
-    <input type = 'number' id = 'cvv' name = 'cvv' placeholder = 'Enter CVV'/>
-    <button type = 'submit' id = 'submit'>Pay</button>
-</form> 
-`
+    if (e.target.id === 'submit'){
+        users(userName.value, 
+        cardNum.value, 
+        userCvv.value)
 
-*/
+        userName.value = ''
+        cardNum.value = ''
+        userCvv.value = ''
+        form.style.display = 'none'
+
+        orders.textContent = ''
+        pizzaOrder.length = 0
+        humOrder.length = 0
+        beerOrder.length = 0
+        totalPrice = 0
+        
+        preCheckout.style.display = 'none'
+
+        thanksMsg.style.display = 'block'
+        thanksMsg.innerHTML = `<p>Thanks, ${userName.value}! Your order is on its way!</p>`
+
+    }
+
+    
+
+})

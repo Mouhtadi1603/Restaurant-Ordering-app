@@ -212,7 +212,7 @@ h4{
     margin-top: 5px;
 }
 
-#empty-cart{
+#empty-cart, #thanks-msg{
     display: none;
     position: relative;
     text-align: center;
@@ -224,10 +224,11 @@ h4{
     height: 90px;
 }
 
-#empty-cart p {
+#empty-cart p, #thanks-msg p{
     position: absolute;
     top: 5px;
-    left: 140px;
+    left: 0px;
+    right: 0px;
     font-size: 25px;
 }
 
@@ -255,6 +256,7 @@ h4{
 }
 
 form{
+    display: none;
     position: fixed;
     margin: auto;      /* Used to center the form */
     top: 355px;      /* Used to center the form */
@@ -262,7 +264,6 @@ form{
     right: 0;      /* Used to center the form */
     width: 500px;
     background-color: white;
-    display: flex;
     flex-direction: column;
     gap: 0px;
     align-items: center;
